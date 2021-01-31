@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="{% static 'CSS/userbase.css' %}">
+</head>
+<body>
+	<main>
+		<div class="header">
+			<ul>
+				<li><a href="#">Home</a></li>
+				<li><a href="{% url 'accounts:logout' %}">logout</a></li>
+				<li><a href="{% url 'diagnose:predictions' %}">my predictions</a></li>
+			
+			</ul>
+		</div>
+		<div class="container">
+		
+			<div class="flex-item  top">
+				<div>
+					<h1 class="content-title">prediction:</h1>
+				
+				</div>
+			</div>
+
+				<!--cards-->
+				<div class="flex-item main-content pestiside">
+
+					
+						<div class=" flex-row">
+							
+						<div><img src='{{ image.imagefile.url }}' width="250px" height="300px"></div>
+						<div class="results"><h2>Results</h2>
+							<ul>
+										<li><strong>Disease: </strong><strong>{{disease.name}}</strong></li>
+										<li><strong>Description </strong>{{disease.description}}</li>
+										{% if healthy %}
+										<P></P>
+										{% else %}
+										<h2><strong>Symptoms</strong></h2>
+										{% for s in symptoms %}
+										<li>{{s}}</li>
+										{% endfor %}
+										<h2><strong>Suggested pesticide:</strong></h2>
+										{% for p in pestisides %}
+										    <li><a href="{% url 'diagnose:pestiside' pk=p.pk di=disease.pk %}"><img src="{{ MEDIA_URL }}{{ p.imagefile.url }}" height="100px" width="100px"></a></li>
+										
+											<li><a href="{% url 'diagnose:pestiside' pk=p.pk di=disease.pk %}">{{p.name}}</a></li>
+											
+										{% endfor %}
+
+										{% endif %}
+										
+										
+										
+
+
+									</ul>
+								
+                            
+						</div>
+						<div class="suggesions">
+							<div>
+								<img src="">
+								<h2></h2>
+							</div>
+							
+						</div>
+						</div>
+						
+				
+					<div >
+						
+					</div>
+					
+					
+
+
+				</div>
+
+				
+				
+				
+			</div>
+			
+			
+		</div>
+	</main>
+</body>
+</html>
+

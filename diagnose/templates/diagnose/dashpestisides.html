@@ -1,0 +1,103 @@
+
+{% extends 'diagnose/userbase.html' %}
+{% load static %}
+{% block content %}
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 250%;
+}
+.container1{
+	display: flex;
+	flex-direction: row;
+	height: 100%;
+width: 100%}
+.container1 button a{
+	
+	text-decoration: none;
+	font-weight: bold;
+	color: #fff;
+}
+}
+
+
+td, th {
+  border: 2px solid #dddddd;
+  text-align: left;
+  padding: 18px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+.main-flex{
+	display: flex;
+	flex-direction: row;
+}
+.container1 button{
+		background: green;
+	border-radius: 10px;
+	height: 40px;
+	margin:5px;
+	left: 0;
+	margin-left:860px;
+}
+.container1 a{
+	text-decoration:none;
+	font-size: 1.8em;
+	font-style: bold;
+	font-color:#000;
+
+}
+</style>
+
+  
+  
+	<section class="container1">
+<!--dropdown list-->	
+		<a href="{% url 'diagnose:dashdiseases' %}">Go to <strong>Diseases</strong></a>			
+<button><a href="{% url 'diagnose:add_pestiside' %}">+ Add pestiside</a></button>
+
+</section>					
+				
+<div class="main-flex">
+	
+<section class='flex-column tables'>
+	<div>
+		<h2 class="table-tittle">Pestisides</h2>
+		
+		<table>
+			<tr>
+				<th>pestiside name</th>
+				<th></th>
+
+			</tr>
+			{% for p in pestisides %}
+			<tr>
+				<td>{{p.name}}</td>
+				{{p.disease_name.all}}
+				{% for d in p.disease_name.all %}
+				 
+				<td>{{d}}a</td>
+	
+			   
+				{% endfor %}
+
+			 
+				<td><button type="button"><a href="{% url 'diagnose:pestiside_details' p.id %}">view</a></button><button type="button"><a href="{% url 'diagnose:update_pestiside' p.id %}">Edit</a></button><button type="button"><a href="{% url 'diagnose:delete_pestiside' p.id %}">Delete</a></button></td>
+			</tr>
+
+{% endfor %}
+
+		</table>
+	</div></section>
+	<div>
+		<h3 class="table-tittle"></h3>
+	</div>
+	
+</section>
+</div>
+
+
+{% endblock %}

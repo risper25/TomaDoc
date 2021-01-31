@@ -1,0 +1,99 @@
+{% extends 'diagnose/userbase.html' %}
+{% load static %}
+{% block content %}
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 50%;
+}
+.container1{
+	display: flex;
+	flex-direction: row;
+	height: 100%;
+width: 100%}
+.container1 button a{
+	
+	text-decoration: none;
+	font-weight: bold;
+	color: #fff;
+}
+}
+
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+.main-flex{
+	display: flex;
+	flex-direction: row;
+}
+.container1 button{
+		background: green;
+	border-radius: 10px;
+	height: 40px;
+	margin:5px;
+	left: 0;
+}
+</style>
+<section class="container1">
+<!--dropdown list-->						
+<button><a href="{% url 'diagnose:upload' %}">+ New user</a></button>
+
+</section>
+  
+  
+						
+		
+<div class="main-flex">
+	
+<section class='flex-column tables'>
+	
+<div>
+		<h3 class="table-tittle">Pestisides</h3>
+		<button><a href="{% url 'diagnose:add_pestiside' %}">add pestiside</a></button>
+		<table>
+			<tr>
+				<th>Username</th>
+				<th>First name</th>
+				<th>Last name</th>
+				<th>predictions made</th>
+
+			</tr>
+			{% for u in users %}
+			<tr>
+				<td>{{u.username}}</td>
+				<td>{{u.firstname}}</td>
+				<td>{{u.lastname}}</td>
+				<td>{{u.email}}</td>
+				<td>{{total}}</td>
+			
+				 
+				
+	
+			   
+				{% endfor %}
+
+			 
+				<td><button type="button"><a href="{% url 'diagnose:view_dashprofile' u.id %}">view</a></td>
+			</tr>
+
+
+
+		</table>
+	</div></section>
+	<div>
+		<h3 class="table-tittle"></h3>
+	</div>
+	
+</section>
+</div>
+
+
+{% endblock %}

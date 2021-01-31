@@ -1,0 +1,127 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'CSS/main.css' %}">
+</head>
+<body>
+
+		
+	
+	<div class="container">
+			<div class="section">
+				<div class="header">
+					{% if user.is_authenticated %}
+					 <ul>
+						<li><a href="{% url 'accounts:home' %}">Home</a></li>
+						<li><a href="{% url 'diagnose:predictions' %}">my predictions</a></li>
+						<li><a href="{% url 'diagnose:upload' %}">Diagnose</a></li>
+						<li><a href="{% url 'accounts:logout' %}">logout</a></li>
+						<li><a href="#about">About us</a></li>
+						<li><a href="#contact">contact us </a></li>
+						
+						
+
+						{% if profile %}
+				<!---<li>
+  <a href="{% url 'diagnose:view_profile' %}"><img src="{{ profile.imagefile.url }}" width="30px" height="30px"></a>--->
+  
+  </a></li> 
+  <li><a href="{% url 'diagnose:view_profile' %}"><h2>{{user.username}}</h2></a></li>{% endif %}
+
+					</ul>
+					{% else %}
+					  <ul>
+						<li><a href="#">Home</a></li>
+						<li><a href="{% url 'accounts:logIn' %}">login</a></li>
+						<li><a href="{% url 'accounts:register' %}">SignUp</a></li>
+						
+						<li><a href="#about">About us</a></li>
+						<li><a href="#contact">contact us </a></li>
+					</ul>
+					{% endif %}
+					
+				</div>
+					<div class="content">
+						{% if user.is_authenticated %}
+						<h1>TOMADOC</h1>	
+						<h2>Welcome {{user.username}}</h2>
+						    {% if profile.image %}
+							<img  class="profile" src='{{ profile.imagefile.url }}' height="100px" width="150px">
+							{% endif %}
+						
+						
+						{% endif %}
+						<h2>Welcome to <strong>Tomadoc</strong></h2>
+						<h2><strong>Diagnose your tomato plant.</strong></h2>
+						<a href="{% url 'diagnose:upload' %}"><button><strong>DIAGNOSE</stong></button></a>
+					</div>
+	       </div>
+
+<div  class="section info"></div>
+
+          <!--<div  class="section info">
+          <div class="icon-infos">
+          		<h1><strong>HOW IT WORKS</strong></h1>
+          	</div>
+          	<div class="icons">
+          	<div class="icon-info">
+          		<img src="{% static 'IMAGES/icon1.png' %}" height="150px" width="150px">
+          		<p><strong>Take a Picture</strong></p>
+          	</div>
+          	<div class="icon-info" >
+          		<img src="{% static 'IMAGES/hebal.png' %}" height="150px" width="150px">
+          		<p><strong>Diagnose and treat</strong></p>
+          	</div>
+          	<div class="icon-info">
+          		<img src="{% static 'IMAGES/tomato.png'%}" height="150px" width="150px">
+          		<p><strong>Get a healty tomato</strong></p>
+          	</div>
+          </div>
+          </div>-->
+			
+	       <div class="section about" id="about">
+		       	<div class="image">
+		       		<img src="{% static 'IMAGES/index.gif'%}" >
+		       	</div>
+
+		       	<div class="info">
+			       		<h1>About us</h1>
+			       	<p>Tomadoc is a web app that helps tomato farmers to diagnose diseases .By uploading a photo .Get the result and suggested treatment.Follow the treatment and get better results.The user can leave a comment on the pestiside used.  </p>
+			       	<p>Our mission is to help farmers to grow healthy tomatoes.</p>
+		       	</div>
+	       	</div>
+
+
+	       <div class="section contact" id="contact">
+		       	
+		       	
+			       <div class="cont">
+	<div class="row">
+			<h1>contact us</h1>
+	</div>
+	<div class="row">
+			<h4 style="text-align:center">We'd love to hear from you!</h4>
+	</div>
+	<div class="row input-container">
+			<h2>Email: tomadoc@gmail.com</h2>
+			<h2>number: +254792792372</h2>
+			</div>
+	</div>
+</div>
+
+		       
+		       	
+
+	       	</div>
+
+	</div>
+
+		<style type="text/css">
+			
+		</style>
+	
+
+</body>
+</html>

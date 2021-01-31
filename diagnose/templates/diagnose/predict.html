@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="{% static 'CSS/userbase.css' %}">
+</head>
+<body>
+	<main>
+		<div class="header">
+			<ul>
+				<li><a href="{% url 'accounts:home' %}">Home</a></li>
+						<li><a href="{% url 'diagnose:predictions' %}">My predictions</a></li>
+						<li><a href="{% url 'accounts:logout' %}">logout</a></li>
+			</ul>
+		</div>
+		<div class="container">
+			
+			<div class="flex-item  top">
+				<div>
+					<h1 class="content-title">predict</h1>
+				
+				</div>
+			</div>
+
+				<!--cards-->
+				<div class="flex-item main-content predict">
+					{% if background %}
+					<h3>sorry your image might be a background.Please upload an image of a tomato leaf
+					 </h3>
+					{% endif %}
+
+                     {% if not disease %}
+					<div>
+					<h2>Please upload an image of a tomato leaf</h2>
+						<div class="box">
+                        
+						
+						<form method="POST" enctype="multipart/form-data">
+							   	  	{% csrf_token %}
+					
+   	  	{{form.as_p}}
+   	  	<img src="#">
+   	  	<button type="submit"><strong>Diagnose</strong></button>
+   	  </form>
+
+						
+					</div>
+					
+					
+					</div>
+
+					{% else %}
+						<div class="box-results">
+			
+					
+					  
+							<form method="POST" enctype="multipart/form-data">
+							<img src='{{ image.imagefile.url }}' width="150px" height="200px">
+						</form>
+
+						<h2>Results</h2>
+						<ul>
+							
+							<li><strong>Disease:{{disease.name}}</strong></li>
+							
+							{% for p in pestisides %}
+							 <li><a href="{% url 'diagnose:pestiside' pk=p.pk di=disease.pk %}"><img src="{{ MEDIA_URL }}{{ p.imagefile.url }}" height="100px" width="100px"></a></li>
+										
+											<li><h2>Suggested pesticide: </h2><a href="{% url 'diagnose:pestiside' pk=p.pk di=disease.pk %}">{{p.name}}</a></li>
+							{% endfor %}
+							<div class="btn">
+							<ul>
+							<li><button><a class="buttons" href="{% url 'diagnose:upload' %}" ><strong>make another prediction </strong></a></button>
+							<button><a class="buttons"href="{% url 'diagnose:predictions'  %}"><strong>view your predictions</strong></a></button></li></ul>
+						</div>
+							
+						
+						</ul>
+						
+					  
+					</div>
+
+					{% endif %}
+					
+
+				</div>
+
+				
+				
+				
+			</div>
+			
+			
+		</div>
+	</main>
+</body>
+</html>
+

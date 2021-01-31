@@ -1,0 +1,86 @@
+{% extends 'diagnose/userbase.html' %}
+{% load static %}
+{% block content %}
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 150%;
+}
+.container1{
+	display: flex;
+	flex-direction: row;
+	height: 100%;
+width: 100%}
+.container1 button a{
+	
+	text-decoration: none;
+	font-weight: bold;
+	color: #fff;
+}
+.main-flex{
+	width: 100%;
+	height: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+.main-flex{
+	display: flex;
+	flex-direction: row;
+}
+.container1 a{
+	text-decoration:none;
+	font-size: 1.8em;
+	font-style: bold;
+	font-color:#000;
+
+}
+
+</style>
+
+  
+ <section class="container1">
+<!--dropdown list-->	
+		<a href="{% url 'diagnose:dashpestisides' %}">Go to <strong>Pestisides</strong></a>			
+
+
+</section> 
+				
+<div class="main-flex">
+	
+<section class='flex-column tables'>
+	<div>
+		<h3 class="table-tittle">Diseases</h3>
+		<table>
+			<tr>
+				<th>Disease name</th>
+				<th>number of predictions</th>
+	
+			</tr>
+			
+				{% for key, value in final_dict.items %} 
+  {% if key != 'Please upload a picture of a tomato leaf' %}
+  <tr>
+  <td>{{key}}</td>
+  <td>{{value}}</td>
+  
+</tr>
+
+  {% endif %}
+{% endfor %}
+			
+
+		</table>
+	</div>
+	
+
+
+{% endblock %}

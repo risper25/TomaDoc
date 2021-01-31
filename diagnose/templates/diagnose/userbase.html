@@ -1,0 +1,113 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="{% static 'CSS/userbase.css' %}">
+</head>
+<body>
+	<main>
+		<div class="header">
+			<ul>
+				<li><a href="{% url 'accounts:home' %}">Home</a></li>
+						<li><a href="{% url 'diagnose:upload' %}">Diagnose</a></li>
+						<li><a href="{% url 'accounts:logout' %}">logout</a></li>
+						<li><a href="{% url 'diagnose:predictions' %}">my predictions</a></li>
+						{% if admin %}
+						<li><a href="{% url 'diagnose:dashpestisides' %}">dashboard </a></li>
+				        {% endif %}
+
+			
+  	<li><a href="{% url 'diagnose:profile' %}"> user: {{user.username}}</a></li>
+			</ul>
+		</div>
+		{% block content %}
+		<div class="container">
+			   <div class="flex-item  top">
+					
+						<h3 class="content-title">my predictions: {{total}}</h3>
+
+					</br>
+					<section class="container">
+<!--dropdown list-->						
+<button><a href="{% url 'diagnose:upload' %}">+ New prediction</a></button>
+<div class="dropdown">
+  	<form action=" " method="POST">
+  		{% csrf_token %}
+      {{form}}
+    <input type="submit" name="filter" value="filter">
+</form>
+  </div>
+  
+  
+						
+				</div>
+				<div class="flex-item main-content">
+					{% if predictions %}
+				    {% for p in predictions %}
+								<ul>
+						<li>
+							<div class="card">
+								<div class="image-card">
+									<img src='{{ p.image.imagefile.url }}' height="276px" width="250px">
+								</div>
+								<div class="content">
+									<ul>
+										<li><strong>Disease: </strong>{{p.disease}}</li>
+									    <li><strong>Date: </strong>{{p.time}}</li>
+										{% for s in suggestions %}
+								          {% for p in s %}
+											<li><strong>Pestiside:</strong>{{p.name}}</li>
+                                        {% endfor %} 
+                                        {% endfor %} 
+
+
+									</ul>
+									
+									<a class="read-more" href="{% url 'diagnose:prediction' p.id %}" style="color:#333"><strong>Read More...</strong></a>
+									<a class="read-more  delete" href="{% url 'diagnose:delete_prediction' p.id %}" style="color:red";>Delete</a>
+									
+
+								</div>	
+						    </div>
+						</li>
+					
+							
+					</ul>
+						
+                    {% endfor %}
+                    {% else %}
+                                        <H1>no predictions</H1>
+                                        {% endif %}  
+					
+					<!--cards-->
+					
+					
+				</div>
+		{% if is_paginated %}
+  <ul class="pagination">
+    {% if page_obj.has_previous %}
+      <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in paginator.page_range %}
+      {% if page_obj.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+      <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+		</div>
+		{% endblock %}
+	</main>
+</body>
+</html>
+

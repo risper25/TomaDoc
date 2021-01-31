@@ -1,0 +1,12 @@
+{% extends "accounts/login.html" %}
+{% block content %}
+		<h2 class="form-title"><strong>SIGN UP</strong></h2>
+
+		<form method="POST">
+			{% csrf_token %}
+			{{form.as_p}}
+			<input type="submit" name="submit" class="btn" value="SIGN UP">
+      
+      <a href="{% url 'accounts:logIn' %}" style="color: #fff;"><strong>Already have an account?</strong></a>
+		</form>
+    {% endblock %}

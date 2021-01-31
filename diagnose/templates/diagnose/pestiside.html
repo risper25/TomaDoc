@@ -1,0 +1,70 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="{% static 'CSS/userbase.css' %}">
+</head>
+<body>
+	<main>
+		<div class="header">
+			<ul>
+				<li><a href="{% url 'accounts:home' %}">Home</a></li>
+						<li><a href="{% url 'diagnose:upload' %}">Diagnose</a></li>
+						<li><a href="{% url 'diagnose:predictions' %}">My predictions</a></li>
+						<li><a href="{% url 'accounts:logout' %}">logout</a></li>
+			
+			</ul>
+		</div>
+		<div class="container">
+			
+			<div class="flex-item  top">
+				<div>
+					<h1 class="content-title">pesticide:</h1>
+				
+				</div>
+			</div>
+
+				<!--cards-->
+				<div class="flex-item main-content pestiside">
+					
+						<div class=" flex-row">
+						<div><img src="{{ MEDIA_URL }}{{ pestiside.imagefile.url }}" height="460px" width="360px">
+						</div>
+						<div class="info"><h2>{{pestiside.name}}</h2>
+                             <h2>Averrage Price : {{pestiside.price}}</h2>
+                            <p class="directions"><h2>DIRECTIONS FOR USE:</h2>{{pestiside.directions}}</p>
+
+						</div>
+						</div>
+				
+					<div >
+						
+					</div>
+					
+					
+
+
+				</div>
+
+	
+
+</body>
+</html>
+
+<style type="text/css">
+	body{
+  padding:50px;
+}
+.panel-heading{
+  font-size:22px;
+  font-weight:bold;
+}
+.panel-body b{
+  font-size:20px;
+}
+.panel-body p{
+  font-size:18px;
+  padding-left:12px;
+}
+</style>

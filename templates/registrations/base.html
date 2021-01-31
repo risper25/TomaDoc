@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		body{
+			margin: 0;
+			padding: 0;
+		}
+		body:before{
+			content:'';
+			position: fixed;
+			height: 100vw;
+			width: 100vw;
+			background-image:  url("https://netstorage-tuko.akamaized.net/images/503d7b8f74917dab.jpg?imwidth=1200&impolicy=default-amp");
+			background-position: center center;
+			background-repeat: no-repeat;
+			background-attachment: fixed;
+			background-size: cover;
+			filter: blur(8px);
+           -webkit-filter: blur(8px);
+
+
+		}
+       .container{
+       	position: absolute;
+       	display: table;
+        left: 30%;
+        top: 20%;
+       	width: 300px;
+       	
+       	background:rgb(0,0,0,0.5);
+       	padding:50px 60px; 
+       	 
+       }
+       .container h2{
+       	margin: 0;
+       	padding: 0 0 20px;
+       	color: #fff;
+       	text-align: center;
+       }
+
+       form{
+
+       	display: flex;
+       	flex-direction: column;
+       	align-items: center;
+       	justify-content: center;
+       
+       }
+
+       input{
+        border: 1px solid #424242;
+       	margin: 10px;
+
+       }
+       input[type=submit]{
+       	height: 30px;
+       	color: #fff;
+       	background:red;
+       	cursor: pointer;
+       	border-radius: 25px;
+       	border: none;
+       	outline: none;
+       	margin-top: 15%; 
+
+       }
+	</style>
+</head>
+<body>
+
+	<div class="container">
+		<!--<img src="https://netstorage-tuko.akamaized.net/images/503d7b8f74917dab.jpg?imwidth=1200&impolicy=default-amp">-->
+   {% block content %}
+		<h2 class="form-title">LOGIN</h2>
+
+		<form method="POST">
+			{% csrf_token %}
+			{{form}}
+			<input type="submit" name="submit" class="btn">
+      <a href="{% url 'password_reset' %}">forgot password</a>
+      <a href="{% url 'accounts:register' %}">create acount</a>
+		</form>
+    {% endblock %}
+		
+	</div>
+	
+</body>
+</html>

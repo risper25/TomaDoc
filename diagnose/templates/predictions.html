@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<!--for loop-->
+            <div class="content item">
+            	
+			   <div class="cards">
+						{% for img in image %}
+					  
+   	{% if img.imagefile %}
+   	  <img src="{{ MEDIA_URL }}{{ img.imagefile.url }}" alt="">
+   	 {% endif %}
+
+					<div class="feature">
+						<p>tomato leaf blast</p>
+					</div>
+			   </div>
+			<!--end of loop-->
+   	{% endfor %}	
+</body>
+</html>

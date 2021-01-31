@@ -1,0 +1,65 @@
+
+
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<div class="">
+  <h1 class="well">Shamari Ishmael</h1>
+  <br />
+  <br />
+
+  <div>
+    <img class="profile" src="#"
+      alt="" />
+
+
+    <div class="list-group col-md-6 pull-right pad">
+      <p class="list-group-item highlight">Username<span class="pull-right">{{user.username}}</span></p>
+      <p class="list-group-item highlight">First Name<span class="pull-right">{{user.username}}</span></p>
+      <p class="list-group-item highlight">Last Name<span class="pull-right">{{user.username}}</span></p>
+      <p class="list-group-item highlight">email<span class="pull-right">{{user.email}}</span></p>
+      <p class="list-group-item highlight">Total predictions <span class="pull-right">{{predictions}}</span></p>
+     
+      
+      <br />
+      
+      
+      <div class="pull-right">
+        <button class="btn btn-success btn-md" onclick="{% url 'diagnose:profile' %}"> Edit</button>
+        <button class="btn btn-danger btn-md" onclick="{% url 'password_reset' %}">Reset Password</button>
+      </div>
+    </div>
+  </div>
+  <br/>
+
+
+</div>
+<style type="text/css">
+	.profile
+{
+  margin-left:50px;
+  border-radius: 100%;
+}
+
+.highlight:hover
+{
+  background-color: #f2f2f2;
+}
+
+hr
+{
+  width: 100px;
+}
+
+.pad
+{
+  padding-right:50px;
+}
+</style>
+</body>
+</html>

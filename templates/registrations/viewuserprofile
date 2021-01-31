@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<main>
+  <section class="container col-lg-12 no-gutters">
+    <header class="col-lg-12 no-gutters">
+      {% block tittle %}<h1 class="">
+        Link for reseting your password has been sent   
+      </h1>{% endblock %}
+    </header>
+    <div class="container body col-lg-12">
+    	{% block content %}
+      <p>
+    	
+    We've emailed you instructions for setting your password, if an account exists with the email you entered.
+    You should receive them shortly.
+  </p>
+  <p>
+    If you don't receive an email, please make sure you've entered the address you registered with,
+    and check your spam folder.
+  </p>
+  {% endblock %}
+    </div>
+  </section>
+</main>
+<style type="text/css">
+	main{
+  font-family: Roboto;
+}
+main > .container{
+  width: 100%;
+  padding-left: 0;
+  padding-right: 0;
+}
+main > .container > header{
+  height: 80px;
+  background-color: #03A9F4;
+  text-align: center;
+  color: #FFF;
+  position: relative;
+}
+main > .container > header > h1{
+  margin-top: 0;
+  margin-bottom: 0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+  left: 0;
+}
+main > .container > .body{
+  padding-top: 50px;
+  text-align: center;
+  font-size: 25px;
+  font-weight: 300;
+}
+.no-gutters{
+  margin-left: 0;
+  margin-right: 0;
+}
+</style>
+</body>
+</html>
+
+
+
+
+  
